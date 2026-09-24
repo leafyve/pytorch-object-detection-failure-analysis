@@ -1,0 +1,13 @@
+{
+  "dataset": "Penn-Fudan Pedestrian Detection",
+  "source_url": "https://www.cis.upenn.edu/~jshi/ped_html/PennFudanPed.zip",
+  "images": 170,
+  "mask_derived_instances": 423,
+  "split_seed": 42,
+  "splits": {
+    "train": {"images": 119, "instances": 290},
+    "validation": {"images": 25, "instances": 67},
+    "test": {"images": 26, "instances": 66}
+  },
+  "raw_data_committed": false
+}

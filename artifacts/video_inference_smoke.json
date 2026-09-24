@@ -1,0 +1,9 @@
+{
+  "input_path": "work\\video_smoke.mp4",
+  "output_path": "work\\video_smoke_annotated.mp4",
+  "frame_count": 10,
+  "source_fps": 5.0,
+  "average_inference_fps": 14.85900660087351,
+  "confidence_threshold": 0.45,
+  "device": "cuda"
+}

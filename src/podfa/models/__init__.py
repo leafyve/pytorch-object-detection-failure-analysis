@@ -1,0 +1,1 @@
+"""Torchvision detector construction."""

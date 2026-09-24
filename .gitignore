@@ -1,0 +1,56 @@
+# Local orchestration
+/work/
+/outputs/
+/.superpowers/
+/docs/superpowers/
+/HANDOFF.md
+
+# Python
+/.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Data and local experiment tracking
+/data/raw/
+/data/downloads/
+/mlruns/
+/mlflow.db
+
+# Large/local model artifacts
+*.pth
+*.pt
+*.ckpt
+/artifacts/experiments/*/checkpoints/
+/artifacts/experiments/*/predictions.pt
+/artifacts/release/
+
+# Temporary outputs
+*.tmp
+*.part
+*.log
+/tmp/
+/dist/
+/build/
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*
+secrets*
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini

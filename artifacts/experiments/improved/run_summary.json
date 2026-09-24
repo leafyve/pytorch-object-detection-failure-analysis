@@ -1,0 +1,15 @@
+{
+  "architecture": "fasterrcnn_mobilenet_v3_large_fpn",
+  "best_epoch": 4,
+  "best_validation_map_50_95": 0.7912984831414568,
+  "completed_epochs": 6,
+  "config_sha256": "3ab8521357b451bffdfd9ce8bac8859eee21c9ea1e3ddd029a58783d54375b58",
+  "device": "cuda",
+  "manifest_sha256": "631066345ec7961628fba7d13948b860c3f37ee54e93cd106bae5331c5c7677e",
+  "mlflow_run_id": "e83256649d384c30b7c9f661a140756b",
+  "num_classes": 2,
+  "pretrained_weights": "COCO_V1",
+  "seed": 42,
+  "trainable_parameters": 18871333,
+  "training_duration_seconds": 147.35146510007326
+}

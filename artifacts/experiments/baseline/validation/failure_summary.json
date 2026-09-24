@@ -1,0 +1,9 @@
+{
+  "confidence_threshold": 0.3,
+  "counts": {
+    "false_negative": 2,
+    "localization_failure": 3,
+    "low_confidence_correct": 2
+  },
+  "split": "validation"
+}

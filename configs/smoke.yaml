@@ -1,0 +1,20 @@
+experiment:
+  name: smoke
+  seed: 42
+  output_dir: artifacts/experiments/smoke
+data:
+  root: data/raw/PennFudanPed
+  manifest: artifacts/splits/penn_fudan_seed42.json
+model:
+  architecture: fasterrcnn_mobilenet_v3_large_fpn
+  pretrained: false
+  num_classes: 2
+  min_size: 128
+  max_size: 256
+training:
+  epochs: 1
+  batch_size: 1
+  learning_rate: 0.001
+evaluation:
+  confidence_threshold: 0.5
+  iou_threshold: 0.5

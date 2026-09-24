@@ -1,0 +1,22 @@
+[
+  {
+    "epoch": 1,
+    "learning_rate": 0.001,
+    "train_loss": 0.9594503360636094,
+    "train_loss_box_reg": 0.09846391998174671,
+    "train_loss_classifier": 0.1971673931018645,
+    "train_loss_objectness": 0.6512195247561992,
+    "train_loss_rpn_box_reg": 0.012599501993601062,
+    "validation_confidence_threshold": 0.5,
+    "validation_iou_threshold": 0.5,
+    "validation_true_positives": 0.0,
+    "validation_false_positives": 0.0,
+    "validation_false_negatives": 67.0,
+    "validation_precision": 0.0,
+    "validation_recall": 0.0,
+    "validation_f1": 0.0,
+    "validation_map_50_95": 0.0004845216871503978,
+    "validation_map_50": 0.002654505146917518,
+    "validation_evaluated_images": 25.0
+  }
+]

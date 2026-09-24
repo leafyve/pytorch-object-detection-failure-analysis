@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Measured results and failure analysis from a reproducible PyTorch pedestrian detector.">
+  <title>PyTorch Object Detection — Experiment Report</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="shell topbar">
+    <strong>Object detection / failure analysis</strong>
+    <nav aria-label="Report navigation">
+      <a href="#method">Method</a>
+      <a href="#experiments">Experiments</a>
+      <a href="#failures">Failures</a>
+      <a href="#test">Held-out test</a>
+      <a href="https://github.com/leafyve/pytorch-object-detection-failure-analysis">Source</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="shell hero">
+      <div>
+        <h1>A detector that explains where it fails.</h1>
+        <p>Faster R-CNN fine-tuned on 170 real street images, evaluated with COCO mAP,
+        then interrogated image by image. Validation failures drove one controlled
+        resolution experiment before a single held-out test.</p>
+      </div>
+      <figure class="hero-visual">
+        <img src="assets/failure-occlusion-group.jpg" alt="Crowded street scene with green ground-truth boxes and red predicted pedestrian boxes">
+        <figcaption>One baseline miss: a correct box on an occluded pedestrian scored 0.069,
+        below the validation-selected operating threshold.</figcaption>
+      </figure>
+    </div>
+
+    <div class="shell metric-strip" aria-label="Final held-out test metrics">
+      <div class="metric"><b>0.6850</b><span>test mAP@0.50:0.95</span></div>
+      <div class="metric"><b>0.8937</b><span>test mAP@0.50</span></div>
+      <div class="metric"><b>0.9219</b><span>test precision</span></div>
+      <div class="metric"><b>0.8939</b><span>test recall</span></div>
+    </div>
+
+    <section id="method">
+      <div class="shell section-head">
+        <h2>Method</h2>
+        <div class="prose">
+          <p>Seed 42 produced non-overlapping 119/25/26 image partitions. Training used
+          only the train split. Checkpoint and threshold decisions used validation.
+          The 26-image test split stayed outside the loop until the model-selection
+          JSON froze a checkpoint digest and threshold.</p>
+          <ol class="pipeline">
+            <li><span>Download 170 paired images/masks; verify ZIP, layout, image readability, and hashes.</span></li>
+            <li><span>Fine-tune Faster R-CNN MobileNetV3 Large FPN from COCO weights.</span></li>
+            <li><span>Track loss, mAP, precision, recall, configuration, device, and duration in local MLflow.</span></li>
+            <li><span>Match predictions by score and IoU; export structured FP/FN/localization evidence.</span></li>
+            <li><span>Run one justified intervention, select on validation, evaluate test once.</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiments">
+      <div class="shell section-head">
+        <h2>Two controlled runs</h2>
+        <div class="prose">
+          <p>The baseline used a 512–768 px resize. Visual inspection of its failures
+          showed two crowded, occluded pedestrians with correct low-confidence boxes.
+          Experiment 2 changed only resize bounds to 640–960 px.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Validation metric</th><th>Baseline</th><th>Improved</th><th>Delta</th></tr></thead>
+              <tbody>
+                <tr><td>mAP@0.50:0.95</td><td>0.7705</td><td>0.7913</td><td class="positive">+0.0208</td></tr>
+                <tr><td>mAP@0.50</td><td>0.9940</td><td>0.9768</td><td class="negative">−0.0172</td></tr>
+                <tr><td>Precision</td><td>0.9559</td><td>0.9559</td><td>0.0000</td></tr>
+                <tr><td>Recall</td><td>0.9701</td><td>0.9701</td><td>0.0000</td></tr>
+                <tr><td>TP / FP / FN</td><td>65 / 3 / 2</td><td>65 / 3 / 2</td><td>unchanged</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="evidence-note">The higher resolution improved the prespecified
+          selection metric but reduced AP@0.50 and did not change operating counts.
+          The report treats this as mixed evidence, not a blanket improvement.</p>
+          <div class="charts">
+            <figure><img src="assets/baseline-validation-metrics.png" alt="Baseline validation metrics by epoch"></figure>
+            <figure><img src="assets/improved-validation-metrics.png" alt="Improved experiment validation metrics by epoch"></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="failures">
+      <div class="shell section-head">
+        <h2>Failure evidence</h2>
+        <div class="prose">
+          <p>Baseline validation produced three localization-category false positives,
+          two false negatives, and two low-confidence correct detections. The examples
+          reveal two distinct limits: occlusion reduces confidence, while incomplete
+          or ambiguous annotation scope can make a plausible person box count as an
+          error.</p>
+          <div class="failure-grid">
+            <figure><img src="assets/failure-occlusion-group.jpg" alt="Occluded people in a dense group with predicted and ground-truth boxes"><figcaption>Dense group: one strong geometric match fell below threshold.</figcaption></figure>
+            <figure><img src="assets/failure-distance-group.jpg" alt="Distant pedestrians with green and red boxes"><figcaption>Distance and overlap: a second low-score correct candidate.</figcaption></figure>
+            <figure><img src="assets/failure-overlap.jpg" alt="Two overlapping pedestrians with detector boxes"><figcaption>Overlap and label scope: a visible person may be outside the available ground truth.</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="test">
+      <div class="shell section-head">
+        <h2>Held-out test</h2>
+        <div class="prose">
+          <p>After selection, the improved epoch-4 checkpoint was evaluated once on 26
+          untouched images containing 66 mask instances. At the frozen 0.45 threshold
+          it produced 59 TP, 5 FP, and 7 FN. Test mAP@0.50:0.95 was 0.6850—lower than
+          validation, and therefore a useful warning about uncertainty on this small
+          dataset.</p>
+          <figure><img src="assets/test-prediction-2.jpg" alt="Held-out street image with ground-truth and predicted pedestrian boxes"></figure>
+          <div class="decision">
+            <div><strong>Selected artifact</strong><br>Faster R-CNN MobileNetV3 Large FPN · 640–960 px · threshold 0.45</div>
+            <code>sha256: 997847765959…d797291d8e</code>
+          </div>
+          <h3>Engineering evidence</h3>
+          <p>Typed package and CLIs, atomic resumable checkpoints, local SQLite MLflow,
+          pytest, Ruff, Docker, GitHub Actions, OpenCV image/video paths, machine-readable
+          JSON/CSV evidence, and a release artifact outside normal Git history.</p>
+          <h3>Limits before deployment</h3>
+          <p>Small single-class dataset, dated and narrow capture conditions, incomplete
+          distant-person labels, no subgroup audit, no score calibration, and no
+          safety-critical validation. This model is an engineering study, not a
+          production surveillance system.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell">
+    Built from measured artifacts. Training: 300.223 seconds across two six-epoch runs
+    on an RTX 4050 Laptop GPU. <a href="https://github.com/leafyve/pytorch-object-detection-failure-analysis">Inspect the code and evidence</a>.
+  </footer>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "experiment": "improved",
+  "decision_split": "validation",
+  "baseline_checkpoint_epoch": 6,
+  "baseline_confidence_threshold": 0.3,
+  "observed_evidence": {
+    "false_negatives": 2,
+    "localization_failures": 3,
+    "low_confidence_correct": 2,
+    "low_confidence_examples": [
+      {
+        "image_id": "FudanPed00025",
+        "score": 0.06879916787147522,
+        "iou": 0.8926147222518921
+      },
+      {
+        "image_id": "PennPed00071",
+        "score": 0.06569478660821915,
+        "iou": 0.595391571521759
+      }
+    ],
+    "visual_pattern": "Both missed instances are partially occluded pedestrians in dense groups."
+  },
+  "intervention": {
+    "type": "input_resize_strategy",
+    "baseline_min_max": [512, 768],
+    "improved_min_max": [640, 960],
+    "mechanism": "Retain more spatial detail for partially occluded pedestrians before backbone feature extraction."
+  },
+  "held_constant": [
+    "Faster R-CNN MobileNetV3 Large FPN architecture",
+    "COCO pretrained weights",
+    "seed 42 split membership",
+    "horizontal flip augmentation",
+    "SGD optimizer and learning-rate schedule",
+    "batch size 2",
+    "six epochs",
+    "validation evaluation and threshold-selection protocol"
+  ],
+  "test_split_used": false
+}

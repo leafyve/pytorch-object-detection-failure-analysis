@@ -1,0 +1,16 @@
+image_id,failure_type,confidence,iou,ground_truth_count,prediction_count,prediction_index,ground_truth_index
+PennPed00056,false_positive,0.8566651344299316,0.0,3,5,3,0
+PennPed00056,false_positive,0.7288878560066223,0.0,3,5,4,0
+PennPed00066,false_negative,,0.0,3,2,,0
+FudanPed00058,localization_failure,0.5823231935501099,0.42821648716926575,8,6,5,1
+FudanPed00058,low_confidence_correct,0.13242806494235992,0.5445722937583923,8,6,6,7
+FudanPed00058,false_negative,,0.0,8,6,,1
+FudanPed00058,false_negative,,0.0,8,6,,5
+FudanPed00058,false_negative,,0.0,8,6,,6
+FudanPed00063,localization_failure,0.5248440504074097,0.16318659484386444,5,4,3,1
+FudanPed00063,false_negative,,0.0,5,4,,3
+FudanPed00063,false_negative,,0.0,5,4,,4
+FudanPed00071,low_confidence_correct,0.19652873277664185,0.7064849734306335,3,2,2,2
+FudanPed00071,false_negative,,0.0,3,2,,2
+FudanPed00007,low_confidence_correct,0.13432708382606506,0.5034817457199097,3,3,3,1
+FudanPed00029,false_positive,0.9900740385055542,0.0,1,2,1,0

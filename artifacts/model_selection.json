@@ -1,0 +1,79 @@
+{
+  "metrics": {
+    "f1": {
+      "baseline": 0.962962962962963,
+      "delta": 0.0,
+      "improved": 0.962962962962963,
+      "label": "F1"
+    },
+    "false_negatives": {
+      "baseline": 2,
+      "delta": 0.0,
+      "improved": 2,
+      "label": "False negatives"
+    },
+    "false_positives": {
+      "baseline": 3,
+      "delta": 0.0,
+      "improved": 3,
+      "label": "False positives"
+    },
+    "map_50": {
+      "baseline": 0.9940295288357578,
+      "delta": -0.0172025586,
+      "improved": 0.9768269701866623,
+      "label": "mAP@0.50"
+    },
+    "map_50_95": {
+      "baseline": 0.7704955121493358,
+      "delta": 0.020802971,
+      "improved": 0.7912984831414568,
+      "label": "mAP@0.50:0.95"
+    },
+    "precision": {
+      "baseline": 0.9558823529411765,
+      "delta": 0.0,
+      "improved": 0.9558823529411765,
+      "label": "Precision"
+    },
+    "recall": {
+      "baseline": 0.9701492537313433,
+      "delta": 0.0,
+      "improved": 0.9701492537313433,
+      "label": "Recall"
+    },
+    "true_positives": {
+      "baseline": 65,
+      "delta": 0.0,
+      "improved": 65,
+      "label": "True positives"
+    }
+  },
+  "preferred_checkpoint": "artifacts\\experiments\\improved\\checkpoints\\best.pth",
+  "preferred_checkpoint_sha256": "9978477659599ffab35279f3ad81b0800bf8e0e7cf2b1c89ec7029d797291d8e",
+  "preferred_config": "configs\\improved.yaml",
+  "preferred_experiment": "improved",
+  "selected_confidence_threshold": 0.45,
+  "selection_rule": "mAP@0.50:0.95, then mAP@0.50, then recall",
+  "selection_split": "validation",
+  "test_split_used_for_selection": false,
+  "validation_metrics": {
+    "checkpoint_epoch": 4,
+    "checkpoint_sha256": "9978477659599ffab35279f3ad81b0800bf8e0e7cf2b1c89ec7029d797291d8e",
+    "confidence_threshold": 0.45,
+    "device": "cuda",
+    "evaluated_images": 25,
+    "evaluation_duration_seconds": 1.6013311001006514,
+    "f1": 0.962962962962963,
+    "false_negatives": 2,
+    "false_positives": 3,
+    "iou_threshold": 0.5,
+    "manifest_sha256": "631066345ec7961628fba7d13948b860c3f37ee54e93cd106bae5331c5c7677e",
+    "map_50": 0.9768269701866623,
+    "map_50_95": 0.7912984831414568,
+    "precision": 0.9558823529411765,
+    "recall": 0.9701492537313433,
+    "split": "validation",
+    "true_positives": 65
+  }
+}

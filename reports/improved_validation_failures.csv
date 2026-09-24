@@ -1,0 +1,8 @@
+image_id,failure_type,confidence,iou,ground_truth_count,prediction_count,prediction_index,ground_truth_index
+FudanPed00016,localization_failure,0.9021828770637512,0.10368409007787704,3,4,3,1
+FudanPed00025,low_confidence_correct,0.10053093731403351,0.555316686630249,6,5,5,4
+FudanPed00025,false_negative,,0.0,6,5,,4
+PennPed00089,low_confidence_correct,0.06630408018827438,0.5289481282234192,2,2,2,0
+PennPed00071,false_negative,,0.0,6,5,,5
+FudanPed00041,localization_failure,0.935654878616333,0.27438509464263916,3,4,2,2
+FudanPed00002,localization_failure,0.7255042791366577,0.3294088840484619,1,2,1,0

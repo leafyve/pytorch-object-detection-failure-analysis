@@ -1,0 +1,16 @@
+{
+  "device": {
+    "cuda_runtime": "12.1",
+    "cudnn_version": 90100,
+    "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "total_memory_bytes": 6438780928,
+    "type": "cuda"
+  },
+  "machine": "AMD64",
+  "numpy_version": "2.1.3",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+  "python_version": "3.11.9",
+  "torch_version": "2.5.1+cu121",
+  "torchvision_version": "0.20.1+cu121"
+}
