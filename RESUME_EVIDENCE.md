@@ -6,7 +6,7 @@ PyTorch Object Detection & Failure Analysis Pipeline
 
 ## Verified stack
 
-Python 3.11, PyTorch 2.5.1, Torchvision 0.20.1, Faster R-CNN, MobileNetV3, FPN, COCO transfer learning, pycocotools, MLflow, OpenCV, pytest, Ruff, Docker, GitHub Actions, and GitHub Pages workflow configuration.
+Python 3.11, PyTorch 2.5.1, Torchvision 0.20.1, Faster R-CNN, MobileNetV3, FPN, COCO transfer learning, pycocotools, MLflow, OpenCV, pytest, Ruff, Docker, GitHub Actions, and GitHub Pages.
 
 ## Dataset size
 
@@ -57,7 +57,7 @@ The OpenCV CLI validates video input, performs frame-by-frame detector inference
 
 ## Deployment/publication evidence
 
-The repository contains push/pull-request CI and GitHub Pages deployment workflows. Public repository, CI, release, and Pages URLs are recorded here only after remote verification so this file does not pre-claim deployment success.
+The project is published as a public repository at <https://github.com/leafyve/pytorch-object-detection-failure-analysis>. GitHub Actions run `36022782803` passed its Linux quality/test/model-smoke/install-smoke and Docker-build jobs. GitHub Pages run `36022782617` deployed the report at <https://leafyve.github.io/pytorch-object-detection-failure-analysis/>.
 
 ## Three candidate resume bullets
 

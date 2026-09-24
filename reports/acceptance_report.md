@@ -33,6 +33,12 @@ checks are recorded after the first push; this report does not pre-claim them.
 
 ## Remote verification
 
-Pending the deliberate first push: GitHub Actions, release assets, repository
-accessibility, and GitHub Pages. These do not weaken the completed local gate;
-their verified URLs and statuses will replace this paragraph after publication.
+| Remote gate | Status | Evidence |
+|---|---|---|
+| Public repository | PASS | <https://github.com/leafyve/pytorch-object-detection-failure-analysis> |
+| GitHub Actions quality and tests | PASS | Run `36022782803`, including Ruff, unit tests, real-detector smoke, and install smoke. |
+| GitHub Actions Docker build | PASS | Docker job in run `36022782803`, completed in 3m46s. |
+| GitHub Pages | PASS | Run `36022782617`; <https://leafyve.github.io/pytorch-object-detection-failure-analysis/> |
+
+The `v1.0.0` release is created only after this publication-evidence commit also
+passes CI, so its tag resolves to the final verified source revision.
